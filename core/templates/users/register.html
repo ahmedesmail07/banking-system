@@ -1,0 +1,11 @@
+{%extends "base/base.html"%}
+{%block title%}
+New Account
+{%endblock title%}
+{%block content%}
+<form method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-primary">Create Account</button>
+</form>
+{%endblock content%}
