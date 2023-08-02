@@ -20,6 +20,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -27,7 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # Third Party Apps
-
+    
     # Local Apps
     "main",
     "users",
@@ -122,3 +123,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR,"media")
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Django-Jazzmin Settings
+
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Nilex",
+    "site_header": "Nilex",
+    "site_brand": "EasyPay",
+    "site_logo": "images/logo.png",
+    "login_logo": None,
+    "copyright": " Nilex - All Right Reserverd © Copyright 2023", 
+}
