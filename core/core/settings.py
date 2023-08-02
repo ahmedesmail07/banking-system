@@ -126,7 +126,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Django-Jazzmin Settings
 
-
 JAZZMIN_SETTINGS = {
     "site_title": "Nilex",
     "site_header": "Nilex",
@@ -135,3 +134,6 @@ JAZZMIN_SETTINGS = {
     "login_logo": None,
     "copyright": " Nilex - All Right Reserverd © Copyright 2023", 
 }
+
+# New USER Model
+AUTH_USER_MODEL = "users.User"
