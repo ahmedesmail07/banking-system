@@ -130,8 +130,10 @@ JAZZMIN_SETTINGS = {
     "site_title": "Nilex",
     "site_header": "Nilex",
     "site_brand": "EasyPay",
-    "site_logo": "images/logo.png",
-    "login_logo": None,
+    "site_logo": "assets/images/admin_logo.png",
+    "login_logo": "assets/images/logo.png",
+    "site_icon": 'assets/images/fav2.png',
+    # "login_logo": None,
     "copyright": " Nilex - All Right Reserverd © Copyright 2023", 
 }
 

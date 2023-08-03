@@ -1,11 +1,60 @@
-{%extends "base/base.html"%}
-{%block title%}
-New Account
-{%endblock title%}
+{%extends 'base/base.html' %}
+{%load static%}
 {%block content%}
-<form method="post">
-    {%csrf_token%}
-    {{form.as_p}}
-    <button type="submit" class="btn btn-primary">Create Account</button>
-</form>
+
+<!-- header-section end -->
+
+<!-- Login Reg start -->
+<section class="login-reg">
+    <div class="overlay pt-120">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-xl-6 order-xl-0 order-1">
+                    <div class="sec-img d-rtl">
+                        <img src="{% static 'assets/images/login-reg-bg.png' %}" class="max-un" alt="image"
+                            style="width: 85%; height: 85%;">
+                    </div>
+                </div>
+                <div class="col-xl-5">
+                    <div class="section-text text-center">
+                        <h5 class="sub-title">Account</h5>
+                        <h3 class="title">Welcome to Nilex</h3>
+                        <p class="dont-acc">Already have an account? <a href="login.html">Login</a></p>
+                        <div class="reg-google">
+                            <a href="javascript:void(0)"><i class="fab fa-google"></i>Sign up with Google</a>
+                        </div>
+                        <span class="or">Or Continue With</span>
+                    </div>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="single-input">
+                                    <label for="{{ form.username.id_for_label }}">Username:</label>
+                                    {{ form.username }}
+                                </div>
+                                <div class="single-input">
+                                    <label for="{{ form.email.id_for_label }}">Email:</label>
+                                    {{ form.email }}
+                                </div>
+                                <div class="single-input">
+                                    <label for="{{ form.password1.id_for_label }}">Password:</label>
+                                    {{ form.password1 }}
+                                </div>
+                                <div class="single-input">
+                                    <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+                                    {{ form.password2 }}
+                                </div>
+
+                                <button class="cmn-btn w-100">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Login Reg end -->
+
 {%endblock content%}
