@@ -1,5 +1,6 @@
 {%extends 'base/base.html' %}
 {%load static%}
+{%block title%}Login{%endblock title%}
 {%block content%}
 
 <!-- header-section end -->
@@ -19,22 +20,40 @@
                     <div class="section-text text-center">
                         <h5 class="sub-title">Account</h5>
                         <h3 class="title">Welcome to Nilex</h3>
-                        <p class="dont-acc">Already have an account? <a href="login.html">Login</a></p>
+                        <p class="dont-acc">Not Registered? <a href="{% url 'users:register'%}"> Register</a></p>
                         <div class="reg-google">
                             <a href="javascript:void(0)"><i class="fab fa-google"></i>Sign up with Google</a>
                         </div>
                         <span class="or">Or Continue With</span>
                     </div>
+                    {% if messages %}
+                    {%for message in messages%}
+                    <strong>
+                        <h5 align="Center">
+                            {{message}}
+                        </h5>
+                    </strong>
+                    {%endfor%}
+                    {%endif%}
                     <form action="" method="POST">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-12">
                                 <div class="single-input">
-                                    <label for="logemail">Your Email</label>
-                                    <input type="text" id="logemail" placeholder="Enter Your Email">
+                                    <label for="logemail">Email</label>
+                                    <input type="text" required name="email" autocomplete="email" id="logemail"
+                                        placeholder="Enter Your Email">
+
+                                </div>
+                                <div class="single-input">
+                                    <label for="password">Password</label>
+                                    <input type="password" required name="password" id="password"
+                                        placeholder="Enter Your password">
+
                                 </div>
 
-                                <button class="cmn-btn w-100">Submit</button>
+                                <button class="cmn-btn w-100">Login</button>
+                                <div class="spacer" style="height: 50px;"></div>
                             </div>
                         </div>
                     </form>

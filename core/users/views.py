@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages # For Admin Page 
-
+from .models import User
 
 def registerView(request):
     if request.method == "POST":
@@ -38,8 +38,32 @@ def registerView(request):
 
 def loginView(request):
     if request.method == "POST":
-        pass
-        # using row input fields:
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        try:
+            # Getting user object from the database by email
+            user = User.objects.get(email=email)
+
+            # Authenticate it 
+            user = authenticate(request,email=email,password=password)
+            
+            if user is not None:
+                # if there is a user and it's already registered then loged him in
+                login(request,user)
+                messages.success(request, "You are logged.")
+                return redirect("main:main")
+
+            else:
+                messages.error(request,"User Not Found Try Again")
+                return redirect("users:register")
+        except:
+            messages.error(request,"User Not Found Try ")
+
+    if request.user.is_authenticated:
+        messages.warning(request, "You are already logged In")
+        return redirect("main:main")
+        # return the login page
     return render(request,"users/login.html")
 
 def logoutView(request):
