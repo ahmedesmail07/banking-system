@@ -3,4 +3,14 @@
 Home
 {%endblock title%}
 {%block content%}
+{%if request.user.is_authenticated%}
+<h1>
+    Hello {{request.user.username|title}}
+</h1>
+<a href="{%url 'users/logout'%}">logout</a>
+{%else%}
+<a href="{%url 'users/login'%}">login</a>
+<a href="{%url 'users/register'%}">register</a>
+
+{%endif%}
 {%endblock content%}

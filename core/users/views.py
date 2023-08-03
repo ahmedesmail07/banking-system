@@ -35,3 +35,11 @@ def RegisterView(request):
     }
 
     return render(request, "users/register.html", context)
+
+def LoginView(request):
+    pass
+
+def LogoutView(request):
+    logout(request)
+    messages.success(request,"Successfully loged out.")
+    return redirect("users:login")
