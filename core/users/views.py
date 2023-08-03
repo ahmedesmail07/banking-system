@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages # For Admin Page 
 
 
-def RegisterView(request):
+def registerView(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -36,10 +36,13 @@ def RegisterView(request):
 
     return render(request, "users/register.html", context)
 
-def LoginView(request):
-    pass
+def loginView(request):
+    if request.method == "POST":
+        pass
+        # using row input fields:
+    return render(request,"users/login.html")
 
-def LogoutView(request):
+def logoutView(request):
     logout(request)
     messages.success(request,"Successfully loged out.")
     return redirect("users:login")

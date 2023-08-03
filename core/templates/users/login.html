@@ -30,20 +30,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="single-input">
-                                    <label for="{{ form.username.id_for_label }}">Username:</label>
-                                    {{ form.username }}
-                                </div>
-                                <div class="single-input">
-                                    <label for="{{ form.email.id_for_label }}">Email:</label>
-                                    {{ form.email }}
-                                </div>
-                                <div class="single-input">
-                                    <label for="{{ form.password1.id_for_label }}">Password:</label>
-                                    {{ form.password1 }}
-                                </div>
-                                <div class="single-input">
-                                    <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
-                                    {{ form.password2 }}
+                                    <label for="logemail">Your Email</label>
+                                    <input type="text" id="logemail" placeholder="Enter Your Email">
                                 </div>
 
                                 <button class="cmn-btn w-100">Submit</button>
@@ -58,8 +46,3 @@
 <!-- Login Reg end -->
 
 {%endblock content%}
-
-<div class="single-input">
-    <label for="logemail">Your Email</label>
-    <input type="text" id="logemail" placeholder="Enter Your Email">
-</div>

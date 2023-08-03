@@ -1,16 +1,14 @@
 {%extends "base/base.html"%}
-{%block title%}
-Home
-{%endblock title%}
+{%load static%}
 {%block content%}
 {%if request.user.is_authenticated%}
-<h1>
+<h2>
     Hello {{request.user.username|title}}
-</h1>
-<a href="{%url 'users/logout'%}">logout</a>
+</h2>
+<a href="{%url 'users:logout'%}">logout</a>
 {%else%}
-<a href="{%url 'users/login'%}">login</a>
-<a href="{%url 'users/register'%}">register</a>
+<a href="{%url 'users:login'%}">login</a>
+<a href="{%url 'users:register'%}">register</a>
 
 {%endif%}
 {%endblock content%}

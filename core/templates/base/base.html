@@ -113,9 +113,12 @@
         </div>
     </header>
 
-    {%block content%}
+    <div class="spacer" style="height: 150px;"></div>
+    <div class="content-section">
+        {% block content %}
+        {% endblock %}
+    </div>
 
-    {%endblock content%}
 
     <!--==================================================================-->
     <script src="{% static 'assets/js/jquery.min.js' %}"></script>
