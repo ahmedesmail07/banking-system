@@ -1,3 +1,4 @@
+import black
 from users.models import User 
 from django.db import models
 import uuid
@@ -70,10 +71,13 @@ class Account(models.Model):
     class Meta:
         ordering = ['-date']
  
+    def __str__(self):
+        return f"{self.user}"
 
 class KYC(models.Model):
     id = models.UUIDField(primary_key=True,unique=True,default=uuid.uuid4,editable=False)
     user = models.OneToOneField(User,on_delete=models.CASCADE)
+    account = models.OneToOneField(Account,on_delete=models.CASCADE,null=True,blank=True)
     full_name = models.CharField(max_length=150)
     image = models.ImageField(upload_to="kyc",default="default.jpg")
     marital_status = models.CharField(choices=MARITAL_STATUS,max_length=100) 

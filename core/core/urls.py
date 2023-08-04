@@ -7,6 +7,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("main.urls")),
     path("users/", include("users.urls")),
+    path("account/",include("account.urls"))
 ]
 
 # Add media root for serving media files during development
