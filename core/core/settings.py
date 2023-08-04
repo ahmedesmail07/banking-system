@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     # Local Apps
     "main",
     "users",
+    "account"
 
 ]
 
@@ -135,6 +136,7 @@ JAZZMIN_SETTINGS = {
     "site_icon": 'assets/images/fav2.png',
     # "login_logo": None,
     "copyright": " Nilex - All Right Reserverd © Copyright 2023", 
+    "site_logo_classes": "img-square",
    
     
 }
