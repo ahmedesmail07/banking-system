@@ -3,7 +3,7 @@ from django.db import models
 import uuid
 from shortuuid.django_fields import ShortUUIDField
 from django_countries.fields import CountryField
-
+from django.db.models.signals import post_save
 
 ACCOUNT_STATUS = (
     ("active","Active"),
@@ -56,7 +56,7 @@ class Account(models.Model):
     pin_number = ShortUUIDField(length=4,alphabet="1234567890",unique=True,)
     ref_code = ShortUUIDField(length=7,max_length=10\
     ,unique=True,alphabet="abcdefg1234567890")
-    nationality = CountryField(unique=True,default="EG")    
+    nationality = CountryField(default="EG")    
     account_status = models.CharField(max_length=50,\
     choices=ACCOUNT_STATUS,default="in-active")
     date = models.DateTimeField(auto_now_add=True)
@@ -70,4 +70,13 @@ class Account(models.Model):
     class Meta:
         ordering = ['-date']
 
-    
+
+def create_account(sender,instance,created,**kwargs):
+    if created:
+        Account.objects.create(user=instance)
+
+def save_account(sender,instance,**kwargs):
+    instance.account.save()
+
+post_save.connect(create_account,sender=User)
+post_save.connect(save_account,sender=User)

@@ -29,12 +29,13 @@ def registerView(request):
                 request, f"Hey Method Not Allowed, You are already logged in.")
             return redirect("main:main")
     else:
-        form = RegisterForm(request.POST)
+        form = RegisterForm()
     context = {
         "form": form
     }
 
     return render(request, "users/register.html", context)
+
 
 def loginView(request):
     if request.method == "POST":

@@ -28,6 +28,15 @@
                         </div>
                         <span class="or">Or Continue With</span>
                     </div>
+                    {% if messages %}
+                    {%for message in messages%}
+                    <strong>
+                        <h5 align="Center">
+                            {{message}}
+                        </h5>
+                    </strong>
+                    {%endfor%}
+                    {%endif%}
                     <form action="" method="POST">
                         {% csrf_token %}
                         <div class="row">
