@@ -29,6 +29,9 @@ def registerView(request):
                 request, f"Hey Method Not Allowed, You are already logged in.")
             return redirect("main:main")
     else:
+        # messages.error(
+        # request, f"You Should Enter At Least 8 Chars And Don't Add The Usename\
+        # Into Password")
         form = RegisterForm()
     context = {
         "form": form

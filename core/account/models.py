@@ -69,6 +69,24 @@ class Account(models.Model):
 
     class Meta:
         ordering = ['-date']
+ 
+
+class KYC(models.Model):
+    id = models.UUIDField(primary_key=True,unique=True,default=uuid.uuid4,editable=False)
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=150)
+    image = models.ImageField(upload_to="kyc",default="default.jpg")
+    marital_status = models.CharField(choices=MARITAL_STATUS,max_length=100) 
+    gender = models.CharField(max_length=15,choices=GENDER)
+    identity_type = models.CharField(max_length=100,choices=IDENTITY_TYPE)
+    date_of_birth = models.DateField(auto_now_add=False)
+    signature = models.ImageField(upload_to="kyc")
+    country = CountryField(default="EG")   
+    state = models.TextField()   
+    city = models.TextField()     
+    mobile = models.CharField(max_length=15)
+
+
 
 
 def create_account(sender,instance,created,**kwargs):
