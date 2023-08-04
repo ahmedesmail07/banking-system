@@ -135,6 +135,15 @@ JAZZMIN_SETTINGS = {
     "site_icon": 'assets/images/fav2.png',
     # "login_logo": None,
     "copyright": " Nilex - All Right Reserverd © Copyright 2023", 
+   
+    
+}
+JAZZMIN_SETTINGS["show_ui_builder"] = True
+
+JAZZMIN_UI_TWEAKS = {
+   
+    "theme": "sketchy",
+    # "dark_mode_theme": "darkly",
 }
 
 # New USER Model
