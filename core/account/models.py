@@ -79,6 +79,7 @@ class KYC(models.Model):
     marital_status = models.CharField(choices=MARITAL_STATUS,max_length=100) 
     gender = models.CharField(max_length=15,choices=GENDER)
     identity_type = models.CharField(max_length=100,choices=IDENTITY_TYPE)
+    identity_image = models.ImageField(upload_to="kyc",blank=True,null=True,)
     date_of_birth = models.DateField(auto_now_add=False)
     signature = models.ImageField(upload_to="kyc")
     country = CountryField(default="EG")   
