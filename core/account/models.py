@@ -86,9 +86,9 @@ class KYC(models.Model):
     identity_image = models.ImageField(upload_to="kyc",blank=True,null=True,)
     date_of_birth = models.DateField(auto_now_add=False)
     signature = models.ImageField(upload_to="kyc")
-    country = CountryField(default="EG")   
+    country = models.CharField(max_length=100,) 
     state = models.TextField()   
-    city = models.TextField()     
+    city = models.CharField(max_length=60)     
     mobile = models.CharField(max_length=15)
 
 

@@ -17,6 +17,7 @@ def kycRegisteration(request):
     context = {
         "account": account,
         "form": None,
+        "kyc":kyc
     }
 
     if request.method == "POST":
@@ -26,6 +27,7 @@ def kycRegisteration(request):
             new_form.user = user
             new_form.account = account
             new_form.save()
+            print(form.errors)
             messages.success(request, "KYC Confirmed Successfully, In Review Now")
             return redirect("main:main")
     else:

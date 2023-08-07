@@ -1,0 +1,9 @@
+.custom-country-select .select2-results__options {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.custom-radio-select {
+    display: inline-block;
+    margin-right: 10px;
+}

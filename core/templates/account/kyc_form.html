@@ -7,6 +7,93 @@
 
 {%block content%}
 
+<head>
+    <style>
+        #id_image {
+            background-color: #432f9f;
+            /* border: 1px solid #e2e9f3; */
+            border-radius: 4px;
+            height: 50px;
+            width: 100%;
+            color: #ffffff;
+        }
+
+        #id_image::file-selector-button {
+            border: none;
+            border-radius: 7px;
+            color: 432f9f;
+            background-color: #ffffff;
+            /* border: 1px solid #595ef1bd; */
+            height: 30px;
+            cursor: pointer;
+            transition: all .25s ease-in;
+        }
+
+        #id_image::file-selector-button:hover,
+        #id_identity_type::file-selector-button:hover {
+            background-color: #fff;
+            color: #565A90;
+            transition: all .25s ease-in;
+        }
+
+
+        #id_identity_image {
+            background-color: #432f9f;
+            /* border: 1px solid #e2e9f3; */
+            border-radius: 4px;
+            height: 50px;
+            width: 100%;
+            color: #ffffff;
+        }
+
+        #id_identity_image::file-selector-button {
+            border: none;
+            border-radius: 7px;
+            color: 432f9f;
+            background-color: #ffffff;
+            /* border: 1px solid #595ef1bd; */
+            height: 30px;
+            cursor: pointer;
+            transition: all .25s ease-in;
+        }
+
+        #id_identity_image::file-selector-button:hover {
+            background-color: #fff;
+            color: #565A90;
+            transition: all .25s ease-in;
+        }
+
+
+
+
+
+        #id_signature {
+            background-color: #432f9f;
+            /* border: 1px solid #e2e9f3; */
+            border-radius: 4px;
+            height: 50px;
+            width: 100%;
+            color: #ffffff;
+        }
+
+        #id_signature::file-selector-button {
+            border: none;
+            border-radius: 7px;
+            color: 432f9f;
+            background-color: #ffffff;
+            /* border: 1px solid #595ef1bd; */
+            height: 30px;
+            cursor: pointer;
+            transition: all .25s ease-in;
+        }
+
+        #id_signature::file-selector-button:hover {
+            background-color: #fff;
+            color: #565A90;
+            transition: all .25s ease-in;
+        }
+    </style>
+</head>
 
 <!-- header-section end -->
 <!-- Dashboard Section start -->
@@ -85,42 +172,114 @@
                             <div class="tab-content mt-40">
                                 <div aria-labelledby="account-tab" class="tab-pane fade show active" id="account"
                                     role="tabpanel">
-                                    <div class="upload-avatar">
-                                        <div class="avatar-left d-flex align-items-center">
-                                            <div class="profile-img">
-                                                <img alt="image"
-                                                    src="{% static 'assets1/images/owner-profile-2.png' %}" />
-                                            </div>
-                                            <div class="instraction">
-                                                <h6>
-                                                    Your Avatar
-                                                </h6>
-                                                <p>
-                                                    Profile picture size: 400px x 400px
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="avatar-right">
-                                            <div class="file-upload">
-                                                <div class="right-area">
-                                                    <label class="file">
-                                                        <input type="file" />
-                                                        <span class="file-custom">
-                                                        </span>
-                                                    </label>
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <div class="upload-avatar">
+                                            <div class="avatar-left d-flex align-items-center">
+                                                <div class="profile-img">
+                                                    <img alt="image" src="{{kyc.image.url}}"
+                                                        style="height: 100px; width:100px  ; border-radius: 50%; object-fit: cover;" />
+                                                </div>
+                                                <div class="instraction">
+                                                    <!-- <h5>
+                                                        Your Avatar
+                                                    </h5> -->
+                                                    <!-- <p>
+                                                        Picture size: 400px x 400px
+                                                    </p> -->
                                                 </div>
                                             </div>
+                                            <div class="avatar-right">
+                                                {{form.image}}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <form method="post">
-                                        {% csrf_token %}
-                                        {% crispy form %}
 
                                         <div class="row justify-content-center">
+                                            <div class="col-md-6">
+                                                <div class="single-input">
+                                                    <label for="fName">Full Name</label>
+                                                    {{form.full_name}}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="single-input">
+                                                    <label for="fName">Mobile Number</label>
+                                                    {{form.mobile}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="single-input">
+                                                    <label for="fName">Country</label>
+                                                    {{form.country}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="single-input">
+                                                    <label for="fName">State</label>
+                                                    {{form.state}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="single-input">
+                                                    <label for="fName">City</label>
+                                                    {{form.city}}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="single-input">
+                                                    <label for="fName">Date Of Birth</label>
+                                                    {{form.date_of_birth}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="single-input">
+                                                    <label for="fName">Gender</label>
+                                                    {{form.gender}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="single-input">
+                                                    {{form.marital_status}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="single-input">
+                                                    <label for="fName">National Identity</label>
+                                                    {{form.identity_type}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 " style="padding-top: 50px;">
+                                                <div class="single-input">
+                                                    <label for="fName">Select Identity Image</label>
+
+                                                    {{form.identity_image}}
+                                                    {% if kyc.identity_image %}
+                                                    <img src="{{ kyc.identity_image.url }}"
+                                                        style="width: 100%; height: 200px; border-radius: 10px; object-fit: cover; padding-top: 10px;"
+                                                        alt="">
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6" style="padding-top: 50px;">
+                                                <div class="single-input">
+                                                    <label for="fName">Select Signature Image</label>
+
+                                                    {{form.signature}}
+                                                    {% if kyc.signature %}
+                                                    <img src="{{ kyc.signature.url }}"
+                                                        style="width: 100%; height: 200px; border-radius: 10px; object-fit: cover; padding-top: 10px;"
+                                                        alt="">
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+
+
                                             <div class="col-md-12">
                                                 <div class="btn-border">
-                                                    <button class="cmn-btn">
-                                                        Account
+                                                    <button class="cmn-btn" type="submit">
+                                                        Submit
                                                     </button>
                                                 </div>
                                             </div>
