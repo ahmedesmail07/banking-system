@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # Third Party Apps
-    
+    'crispy_forms', 
     # Local Apps
     "main",
     "users",
@@ -150,3 +150,6 @@ JAZZMIN_UI_TWEAKS = {
 
 # New USER Model
 AUTH_USER_MODEL = "users.User"
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+

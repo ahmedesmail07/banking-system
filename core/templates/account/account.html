@@ -1,7 +1,6 @@
 {%extends 'base/dashboard-base.html'%}
 
 {%load static%}
-{% load crispy_forms_tags %}
 {%block content%}
 
 
@@ -74,10 +73,30 @@
                                     <button aria-controls="account" aria-selected="true" class="nav-link active"
                                         data-bs-target="#account" data-bs-toggle="tab" id="account-tab" role="tab"
                                         type="button">
-                                        KYC Registeration Form
+                                        Account
                                     </button>
                                 </li>
-
+                                <li class="nav-item" role="presentation">
+                                    <button aria-controls="security" aria-selected="false" class="nav-link"
+                                        data-bs-target="#security" data-bs-toggle="tab" id="security-tab" role="tab"
+                                        type="button">
+                                        Security
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button aria-controls="payment" aria-selected="false" class="nav-link"
+                                        data-bs-target="#payment" data-bs-toggle="tab" id="payment-tab" role="tab"
+                                        type="button">
+                                        Payment Methods
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button aria-controls="notification" aria-selected="false" class="nav-link"
+                                        data-bs-target="#notification" data-bs-toggle="tab" id="notification-tab"
+                                        role="tab" type="button">
+                                        Notification
+                                    </button>
+                                </li>
                             </ul>
                             <div class="tab-content mt-40">
                                 <div aria-labelledby="account-tab" class="tab-pane fade show active" id="account"
@@ -109,10 +128,101 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <form method="post">
-                                        {%csrf_token%}
-                                        {{form}}
+                                    <form action="#">
                                         <div class="row justify-content-center">
+                                            <div class="col-md-6">
+                                                <div class="single-input">
+                                                    <label for="fName">
+                                                        First Name
+                                                    </label>
+                                                    <input id="fName" placeholder="Alfred" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="single-input">
+                                                    <label for="lName">
+                                                        Last Name
+                                                    </label>
+                                                    <input id="lName" placeholder="Davis" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="single-input">
+                                                    <label for="email">
+                                                        Email
+                                                    </label>
+                                                    <div class="row input-status d-flex align-items-center">
+                                                        <div class="col-6">
+                                                            <input id="email" placeholder="alfred6598@gmail.com"
+                                                                type="text" />
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <span class="pending">
+                                                                <img alt="icon"
+                                                                    src="{% static 'assets1/images/icon/pending.png' %}" />
+                                                                E-mail confirmation in pending
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="single-input">
+                                                    <label for="phone">
+                                                        Phone
+                                                    </label>
+                                                    <div class="row input-status d-flex align-items-center">
+                                                        <div class="col-6">
+                                                            <input id="phone" placeholder="(316) 555-0116"
+                                                                type="text" />
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <span class="confirm">
+                                                                <img alt="icon"
+                                                                    src="{% static 'assets1/images/icon/confirm.png' %}" />
+                                                                Phone number confirm
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="single-input file">
+                                                    <label>
+                                                        ID Confirmation documents
+                                                    </label>
+                                                    <div class="row input-status d-flex align-items-center">
+                                                        <div class="col-6">
+                                                            <div class="file-upload">
+                                                                <div class="right-area">
+                                                                    <label class="file">
+                                                                        <input type="file" />
+                                                                        <span class="file-custom">
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <span class="notconfirm">
+                                                                <img alt="icon"
+                                                                    src="{% static 'assets1/images/icon/not-confirm.png' %}" />
+                                                                Person not confirmed
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="single-input">
+                                                    <label for="address">
+                                                        Address
+                                                    </label>
+                                                    <input id="address"
+                                                        placeholder="2972 Westheimer Rd. Santa Ana, Illinois 85486"
+                                                        type="text" />
+                                                </div>
+                                            </div>
                                             <div class="col-md-12">
                                                 <div class="btn-border">
                                                     <button class="cmn-btn">
