@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # Third Party Apps
-    'crispy_forms', 
+    'crispy_forms',
     "crispy_bootstrap4",
     # Local Apps
     "main",
@@ -52,7 +52,7 @@ ROOT_URLCONF = "core.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR,"templates")],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -113,13 +113,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-#STATIC_FILES
+# STATIC_FILES
 STATIC_URL = "static/"
-STATICFILES_DIRS = [os.path.join(BASE_DIR,"static")]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
-#MEDIA
+# MEDIA
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -136,15 +136,15 @@ JAZZMIN_SETTINGS = {
     "login_logo": "assets/images/logo.png",
     "site_icon": 'assets/images/fav2.png',
     # "login_logo": None,
-    "copyright": " Nilex - All Right Reserverd © Copyright 2023", 
+    "copyright": " Nilex - All Right Reserverd © Copyright 2023",
     "site_logo_classes": "img-square",
-   
-    
+
+
 }
 JAZZMIN_SETTINGS["show_ui_builder"] = True
 
 JAZZMIN_UI_TWEAKS = {
-   
+
     "theme": "sketchy",
     # "dark_mode_theme": "darkly",
 }
@@ -156,3 +156,7 @@ AUTH_USER_MODEL = "users.User"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+LOGIN_URL = "users:login"
+# # LOGIN_REDIRECT_URL = "users:login"
+LOGOUT_REDIRECT_URL = "users:login"

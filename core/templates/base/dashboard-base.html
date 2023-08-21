@@ -211,6 +211,13 @@
                                     </div>
                                     <ul>
                                         <li class="border-area">
+                                            <a href="/admin">
+                                                <i class="fas fa-user">
+                                                </i>
+                                                Admin
+                                            </a>
+                                        </li>
+                                        <li class="border-area">
                                             <a href="account.html">
                                                 <i class="fas fa-cog">
                                                 </i>
@@ -358,6 +365,20 @@
                 </div>
             </div>
         </div>
+        <!-- alert start -->
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+            <strong>{{ message }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <!-- <script>
+              setTimeout(() => {
+                  $(".alert").alert("close");
+              }, 4000)
+          </script> -->
+        <!-- alert end -->
 
     </header>
 
