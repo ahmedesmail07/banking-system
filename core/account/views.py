@@ -1,5 +1,3 @@
-import re
-from tkinter import NO
 from django.shortcuts import redirect, render
 from .models import KYC, Account
 from .forms import KYCForm
