@@ -7,17 +7,20 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 
-# @login_required
 def accountView(request):
     if request.user.is_authenticated:
         try:
             kyc = KYC.objects.get(user=request.user)
-        except:
-            messages.warning(request, "You Should Submit your kyc first.")
+            account = Account.objects.get(user=request.user)
+            return render(request, 'account/account.html', {'kyc': kyc, 'account': account})
+        except KYC.DoesNotExist:
+            messages.warning(request, "You Should Submit your KYC first.")
             return redirect("account:kyc-register")
-        account = Account.objects.get(user=request.user)
+        # except Account.DoesNotExist:
+        #     messages.warning(request, "Account not found.")
+        #     return redirect("account:create-account")
     else:
-        messages.warning(request, "you should login to access the dashboard")
+        messages.warning(request, "You should log in to access the dashboard.")
         return redirect("users:login")
 
 

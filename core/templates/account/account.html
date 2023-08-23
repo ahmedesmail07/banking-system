@@ -15,25 +15,46 @@
                         <div class="owner-details">
                             <div class="profile-area">
                                 <div class="profile-img">
-                                    <img alt="image" src={{kyc.image.url}} />
+                                    <img alt="image"
+                                        style="width: 125px; height: 125px; border-radius: 75% ; object-fit: cover;"
+                                        src={{kyc.image.url}} />
                                 </div>
                                 <div class="name-area">
                                     <h6>
-                                        Alfred Davis
+                                        <!-- type|title => to capitalize the first letter -->
+                                        {{kyc.full_name|title}}
                                     </h6>
-                                    <p class="active-status">
-                                        Active
+                                    {%if account.account_status == "in-active" %}
+                                    <p class="active-status text-danger">
+                                        {{account.account_status|title}}
                                     </p>
+                                    {%elif account.account_status == "pending"%}
+                                    <p class="text-warning">
+                                        {{account.account_status|title}}
+                                    </p>
+                                    {%else%}
+                                    <p class="active-status">
+                                        {{account.account_status|title}}
+                                    </p>
+                                    {%endif%}
                                 </div>
                             </div>
                             <div class="owner-info">
                                 <ul>
                                     <li>
                                         <p>
-                                            Account ID:
+                                            Account No:
                                         </p>
                                         <span class="mdr">
-                                            Rex49484
+                                            {{account.account_number}}
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            Pin No:
+                                        </p>
+                                        <span class="mdr">
+                                            {{account.pin_number}}
                                         </span>
                                     </li>
                                     <li>
@@ -41,21 +62,14 @@
                                             Joined:
                                         </p>
                                         <span class="mdr">
-                                            Aug 25,2021
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <p>
-                                            Confirm status:
-                                        </p>
-                                        <span class="mdr">
-                                            80%
+                                            {{account.date|date}}
                                         </span>
                                     </li>
                                 </ul>
                             </div>
+                            {%if user.is_authenticated%}
                             <div class="owner-action">
-                                <a href="javascript:void(0)">
+                                <a href="{%url 'users:logout'%}">
                                     <img alt="image" src="{% static 'assets1/images/icon/logout.png' %}" />
                                     Logout
                                 </a>
@@ -64,6 +78,7 @@
                                     Delete Account
                                 </a>
                             </div>
+                            {%endif%}
                         </div>
                     </div>
                     <div class="col-xxl-9 col-xl-8">
