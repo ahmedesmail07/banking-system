@@ -6,10 +6,8 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="ie=edge" http-equiv="X-UA-Compatible" />
-    <title>
-        Paylio - Money Transfer and Online Payments Dashboard HTML Template
-    </title>
-    <link href="{% static 'assets1/images/fav.png' %}" rel="shortcut icon" type="image/x-icon" />
+    <title> Nilex - {%block title%}{%endblock title%}</title>
+    <link rel="shortcut icon" href="{% static 'assets/images/fav2.png' type='image/x-icon' %}">
     <link href="{% static 'assets1/css/bootstrap.min.css' %}" rel="stylesheet" />
     <link href="{% static 'assets1/css/fontawesome.min.css' %}" rel="stylesheet" />
     <link href="{% static 'assets1/css/jquery-ui.css' %}" rel="stylesheet" />
@@ -188,7 +186,9 @@
                             <div class="single-item user-area">
                                 <div class="profile-area d-flex align-items-center">
                                     <span class="user-profile">
-                                        <img alt="User" src="{% static 'assets1/images/avatar.png' %}" />
+                                        <img alt="image"
+                                            style="width: 25px; height: 25px; border-radius: 75% ; object-fit: cover;"
+                                            src={{kyc.image.url}} />
                                     </span>
                                     <i class="fa-solid fa-sort-down">
                                     </i>
@@ -196,36 +196,35 @@
                                 <div class="main-area user-content">
                                     <div class="head-area d-flex align-items-center">
                                         <div class="profile-img">
-                                            <img alt="User" src="{% static 'assets1/images/avatar-2.png' %}" />
+                                            <img alt="image" style="width: 45px; height: 45px;  object-fit: cover;"
+                                                src={{kyc.image.url}} />
                                         </div>
                                         <div class="profile-head">
-                                            <a href="javascript:void(0)">
-                                                <h5>
-                                                    Kevin Martin
-                                                </h5>
+                                            <a href="{%url 'account:account'%}">
+                                                <h6>
+                                                    {{kyc.full_name}}
+                                                </h6>
                                             </a>
                                             <p class="wallet-id">
-                                                Wallet ID: 6264849965
+                                                Account No: {{account.account_number}}
                                             </p>
                                         </div>
                                     </div>
                                     <ul>
                                         <li class="border-area">
-                                            <a href="/admin">
-                                                <i class="fas fa-user">
-                                                </i>
-                                                Admin
-                                            </a>
+                                            {% if request.user.is_superuser %}
+                                            <a href="/admin" class="login cmdn-btn">Admin</a>
+                                            {% endif %}
                                         </li>
                                         <li class="border-area">
-                                            <a href="account.html">
+                                            <a href="{%url 'account:account'%}">
                                                 <i class="fas fa-cog">
                                                 </i>
                                                 Settings
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)">
+                                            <a href="{%url 'users:logout'%}">
                                                 <i class="fas fa-sign-out">
                                                 </i>
                                                 Logout
@@ -242,7 +241,7 @@
                             </div>
                             <div class="sidebar-logo">
                                 <a href="dashboard.html">
-                                    <img alt="logo" src="{% static 'assets1/images/logo.png' %}" />
+                                    <img alt="logo" src="{% static 'assets/images/logoo.png' %}" />
                                 </a>
                             </div>
                             <ul>
