@@ -1,6 +1,10 @@
 {%extends "base/dashboard-base.html"%}
 {% load static %}
 {%block content%}
+
+<head>
+    <title>{%block title%}Search Account{%endblock title%}</title>
+</head>
 <!-- Dashboard Section start -->
 <section class="dashboard-section body-collapse pay step">
     <div class="overlay pt-120">
@@ -56,13 +60,17 @@
                         200 Recipients
                     </p>
                 </div>
-                <form action="#" class="flex-fill">
+                <form class="flex-fill" method="post">
+                    {%csrf_token%}
                     <div class="form-group d-flex align-items-center">
                         <img alt="icon" src="{% static 'assets1/images/icon/search.png' %}" />
-                        <input placeholder="Search By Account Number" type="text" />
+                        <input name="account_number" placeholder="Search By Account Number or ID" type="text" />
+                        <button class="btn btn-outline-primary" type="submit">Search
+                        </button>
                     </div>
                 </form>
                 <div class="user-select">
+                    {%if query%}
                     {%for acc in account %}
 
                     <div class="single-user">
@@ -75,6 +83,9 @@
                                 <p>
                                     {{acc.user.kyc.full_name}}
                                 </p>
+                                <p>
+                                    {{acc.account_number}}
+                                </p>
                                 <span class="mdr">
                                     <a class="__cf_email__" data-cfemail="54033d38383526306d6d143339353d387a373b39"
                                         href="/cdn-cgi/l/email-protection">
@@ -84,13 +95,19 @@
                             </div>
                         </div>
                         <div class="right">
-                            <a href="javascript:void(0)">
+                            <a href="{%url 'main:transfer-amount' acc.account_number%}">
                                 Choose
                             </a>
                         </div>
                     </div>
+                    {%empty%}
+                    <div>
+                        <h4 style="text-align: center;">
+                            Account does not exist
+                        </h4>
+                    </div>
                     {%endfor%}
-
+                    {%endif%}
                 </div>
                 <div class="footer-area mt-40">
                     <a href="pay.html">
