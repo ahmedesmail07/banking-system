@@ -65,7 +65,8 @@
                             You Send
                         </span>
                         <div class="input-area">
-                            <input class="xxlr" onkeyup="CalculateBalance()" placeholder="400.00" type="number" />
+                            <input class="xxlr" onkeyup="CalculateBalance()"
+                                placeholder="{{request.user.account.account_balance}}" type="number" id="send_amount" />
                             <select>
                                 <option value="1">
                                     USD
@@ -78,12 +79,12 @@
                                 </option>
                             </select>
                         </div>
-                        <p id="new_balance"></p>
-                        Available Balance
-                        <b>
-                            $30,700.00
-                        </b>
+                        <p>
+                            {{request.user.account.account_balance}}
                         </p>
+                        <p id="new_balance"></p>
+
+
                     </div>
                     <!-- js code for handling the errors of the money transfer   -->
                     <script>
@@ -91,6 +92,25 @@
                             let available_balance = "{{request.user.account.account_balance}}"
                             // console.log(available_balance)
                             let new_balance = document.getElementById("new_balance")
+                            let send_amount_input = document.getElementById("send_amount")
+                            let send_amount = send_amount_input.value
+                            let error_div = document.getElementById("error_div")
+                            let total_to_pay = document.getElementById("total_to_pay")
+                            let error = []
+                            balance_after = available_balance - send_amount
+                            new_balance.innerHTML = `New Balance <b> $${balance_after.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </b>`;
+                            total_to_pay.innerHTML = `USD <b> $${send_amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </b>`;
+
+                            if (balance_after < 0) {
+                                new_balance.style.color = "red"
+                                alert("You can only send $" + available_balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+                            } else {
+                                new_balance.style.color = "#27276e"
+
+                            }
+
+
+
                         }
 
                     </script>
@@ -109,8 +129,8 @@
                             </h5>
                         </li>
                         <li>
-                            <h5>
-                                400.00 USD
+                            <h5 id="total_to_pay">
+                                USD $0.00
                             </h5>
                         </li>
                     </ul>
