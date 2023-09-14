@@ -28,13 +28,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # Third Party Apps
-    'crispy_forms',
+    "crispy_forms",
     "crispy_bootstrap4",
+    "schema_graph",
     # Local Apps
     "main",
     "users",
-    "account"
-
+    "account",
 ]
 
 MIDDLEWARE = [
@@ -134,17 +134,14 @@ JAZZMIN_SETTINGS = {
     "site_brand": "EasyPay",
     "site_logo": "assets/images/admin_logo.png",
     "login_logo": "assets/images/logo.png",
-    "site_icon": 'assets/images/fav2.png',
+    "site_icon": "assets/images/fav2.png",
     # "login_logo": None,
     "copyright": " Nilex - All Right Reserverd © Copyright 2023",
     "site_logo_classes": "img-square",
-
-
 }
 JAZZMIN_SETTINGS["show_ui_builder"] = True
 
 JAZZMIN_UI_TWEAKS = {
-
     "theme": "sketchy",
     # "dark_mode_theme": "darkly",
 }
