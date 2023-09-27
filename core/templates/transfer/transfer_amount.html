@@ -59,14 +59,16 @@
                         </div>
                     </div>
                 </div>
-                <form action="">
+                <form action="{%url 'main:transfer-amount-process' account.account_number%}" method="post">
+                    {%csrf_token%}
                     <div class="send-banance">
                         <span class="mdr">
                             You Send
                         </span>
                         <div class="input-area">
                             <input class="xxlr" onkeyup="CalculateBalance()"
-                                placeholder="{{request.user.account.account_balance}}" type="number" id="send_amount" />
+                                placeholder="{{request.user.account.account_balance}}" type="number" name="send_amount"
+                                id="send_amount" />
                             <select>
                                 <option value="1">
                                     USD
@@ -84,6 +86,16 @@
                         </p>
                         <p id="new_balance"></p>
 
+
+                    </div>
+                    <div class="send-banance mt-0 pt-0">
+                        <span class="mdr">
+                            Description
+                        </span>
+                        <div class="input-area">
+                            <input class="xxlr" onkeyup="CalculateBalance()" placeholder="" type="text"
+                                name="description" />
+                        </div>
 
                     </div>
                     <!-- js code for handling the errors of the money transfer   -->
@@ -138,9 +150,10 @@
                         <a href="pay-step-1.html">
                             Previous Step
                         </a>
-                        <a class="active" href="pay-step-3.html">
+                        <button class="btn btn-primary btn-lg" type=" submit"
+                            style="border-radius: 15px; padding: 15px 70px;">
                             Next
-                        </a>
+                        </button>
                     </div>
                 </form>
             </div>

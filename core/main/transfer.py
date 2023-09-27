@@ -2,11 +2,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from account.models import Account
 from django.shortcuts import render, redirect
-from account.models import KYC, Account
-from account.forms import KYCForm
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+
+from .models import Transactions
 
 
 @login_required
@@ -20,8 +18,7 @@ def searchAccount(request):
         query = query.strip()  # Remove leading/trailing whitespace
         if query:  # Check if query is not empty after stripping
             account = account.filter(
-                Q(account_number__iexact=query) |
-                Q(account_id__iexact=query)
+                Q(account_number__iexact=query) | Q(account_id__iexact=query)
             ).distinct()
     context = {
         "account": account,
@@ -38,7 +35,7 @@ account is the passed context that will be used in the html page then you can us
 
 <a class="active" href="{%url 'main:transfer-amount' account_number%}">
 path("transfer-amount/<account_number>/",transferAmount, name="transfer-amount"),
-when you are trying to pass an id of some thing in the html page it should be like 
+when you are trying to pass an id of some thing in the html page it should be like
 the above
 
 -------------------------------------------------------------------------------------
@@ -51,7 +48,7 @@ def transferAmount(request, account_number):
     try:
         account = Account.objects.get(account_number=account_number)
     except:
-        # meaning that the account is not passedi in the url
+        # meaning that the account is not passed in the url
         messages.warning(request, "Account Does Not Exist")
         return redirect("main:search-account")
 
@@ -59,3 +56,43 @@ def transferAmount(request, account_number):
         "account": account,
     }
     return render(request, "transfer/transfer_amount.html", context)
+
+
+def transferAmountProcess(request, account_number):
+    # the account that will recieve the amount of the money.
+    account = Account.objects.get(account_number=account_number)
+    # the logged in user that will send the money
+    sender = request.user
+    # get the reciever account
+    reciever = account.user
+    sender_account = sender.account
+    reciever_account = account
+
+    if request.method == "POST":
+        amount = request.POST.get("send_amount")
+        description = request.POST.get("description")
+
+        if sender_account.account_balance > 0 and amount:
+            new_transaction = Transactions.objects.create(
+                user=request.user,
+                amount=amount,
+                description=description,
+                reciever=reciever,
+                sender=sender,
+                sender_account=sender_account,
+                reciever_account=reciever_account,
+                transaction_status="processing",
+                transaction_type="transfer",
+            )
+            new_transaction.save()
+            transaction_id = new_transaction.transaction_id
+            return redirect(
+                "main:transfer-confirmation", account.account_number, transaction_id
+            )
+        else:
+            messages.warning(request, "Insuffient Fund.")
+            return redirect("main:transfer-amount", account.account_number)
+
+    else:
+        messages.warning(request, "Try Again")
+        return redirect("account:account")

@@ -10,7 +10,9 @@ def accountView(request):
         try:
             kyc = KYC.objects.get(user=request.user)
             account = Account.objects.get(user=request.user)
-            return render(request, 'account/account.html', {'kyc': kyc, 'account': account})
+            return render(
+                request, "account/account.html", {"kyc": kyc, "account": account}
+            )
         except KYC.DoesNotExist:
             messages.warning(request, "You Should Submit your KYC first.")
             return redirect("account:kyc-register")
@@ -32,11 +34,7 @@ def kycRegisteration(request):
     except:
         kyc = None
 
-    context = {
-        "account": account,
-        "form": None,
-        "kyc": kyc
-    }
+    context = {"account": account, "form": None, "kyc": kyc}
 
     if request.method == "POST":
         form = KYCForm(request.POST, request.FILES, instance=kyc)
@@ -46,8 +44,7 @@ def kycRegisteration(request):
             new_form.account = account
             new_form.save()
             print(form.errors)
-            messages.success(
-                request, "KYC Confirmed Successfully, In Review Now")
+            messages.success(request, "KYC Confirmed Successfully, In Review Now")
             return redirect("main:main")
     else:
         form = KYCForm(instance=kyc)
