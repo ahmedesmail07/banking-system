@@ -1,6 +1,11 @@
 from django.urls import path
 from .views import index, contact, about
-from .transfer import searchAccount, transferAmount, transferAmountProcess
+from .transfer import (
+    searchAccount,
+    transferAmount,
+    transferAmountProcess,
+    transferConfirmation,
+)
 
 app_name = "main"
 
@@ -14,5 +19,10 @@ urlpatterns = [
         "transfer-amount-process/<account_number>/",
         transferAmountProcess,
         name="transfer-amount-process",
+    ),
+    path(
+        "transfer-confirm/<account_number>/<transaction_id>/",
+        transferConfirmation,
+        name="transfer-confirm",
     ),
 ]

@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.forms import ValidationError
 from account.models import Account
 from django.shortcuts import render, redirect
 from django.db.models import Q
-
+from django.core.exceptions import ObjectDoesNotExist
 from .models import Transactions
 
 
@@ -47,7 +48,7 @@ def transferAmount(request, account_number):
     # taking the account number of the model == the account number passed in the method
     try:
         account = Account.objects.get(account_number=account_number)
-    except:
+    except ValueError:
         # meaning that the account is not passed in the url
         messages.warning(request, "Account Does Not Exist")
         return redirect("main:search-account")
@@ -96,3 +97,19 @@ def transferAmountProcess(request, account_number):
     else:
         messages.warning(request, "Try Again")
         return redirect("account:account")
+
+
+def transferConfirmation(request, account_number, transaction_id):
+    try:
+        account = Account.objects.get(account_number=account_number)
+        transaction = Transactions.objects.get(transaction_id=transaction_id)
+    except ObjectDoesNotExist:
+        raise ValidationError(
+            f"There is no transactions of the {transaction_id} or the account number {account_number} is not exist "
+        )
+
+    context = {
+        "account": account,
+        "transaction": transaction,
+    }
+    return render(request, "transfer/transaction-confirm.html", context)
